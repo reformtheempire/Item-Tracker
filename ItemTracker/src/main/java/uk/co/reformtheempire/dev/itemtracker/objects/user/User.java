@@ -3,8 +3,8 @@ package uk.co.reformtheempire.dev.itemtracker.objects.user;
 public class User {
 
 	private final int id;
-	private final UserType userType;
 	private final String name;
+	private final UserType userType;
 	private final String email;
 	private final String telephoneNumber;
 

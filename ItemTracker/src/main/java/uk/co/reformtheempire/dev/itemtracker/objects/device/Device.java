@@ -3,8 +3,8 @@ package uk.co.reformtheempire.dev.itemtracker.objects.device;
 public class Device {
 
 	private final int id;
-	private final DeviceType deviceType;
 	private final String deviceName;
+	private final DeviceType deviceType;
 	private final String serialNumber;
 	
 	public Device(int id, DeviceType deviceType, String deviceName, String serialNumber) {
