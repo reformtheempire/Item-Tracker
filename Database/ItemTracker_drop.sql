@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-02-24 00:28:27.235
+-- Last modification date: 2018-02-24 00:54:19.31
 
 -- foreign keys
 ALTER TABLE Devices
@@ -7,6 +7,9 @@ ALTER TABLE Devices
 
 ALTER TABLE Loans
     DROP FOREIGN KEY Loans_Devices;
+
+ALTER TABLE Loans
+    DROP FOREIGN KEY Loans_Requester;
 
 ALTER TABLE Loans
     DROP FOREIGN KEY Loans_users;
@@ -20,6 +23,8 @@ DROP TABLE DeviceTypes;
 DROP TABLE Devices;
 
 DROP TABLE Loans;
+
+DROP TABLE Requester;
 
 DROP TABLE UserTypes;
 

@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-02-24 00:28:27.235
+-- Last modification date: 2018-02-24 00:54:19.31
 
 -- tables
 -- Table: DeviceTypes
@@ -21,14 +21,23 @@ CREATE TABLE Devices (
 -- Table: Loans
 CREATE TABLE Loans (
     id int NOT NULL,
-    user_id int NOT NULL,
+    requester_id int NOT NULL,
     device_id int NOT NULL,
     collection_date date NOT NULL,
     expected_return_date date NOT NULL,
-    loaned_by int NOT NULL,
+    loaned_by int NULL,
     actual_return_date date NULL,
     received_by int NULL,
     CONSTRAINT Loans_pk PRIMARY KEY (id)
+);
+
+-- Table: Requester
+CREATE TABLE Requester (
+    id int NOT NULL,
+    name varchar(32) NOT NULL,
+    email varchar(64) NULL CHECK ([*@*]),
+    phone_number varchar(16) NULL CHECK ([+]?[0-9]{11,16}),
+    CONSTRAINT Requester_pk PRIMARY KEY (id)
 );
 
 -- Table: UserTypes
@@ -41,10 +50,12 @@ CREATE TABLE UserTypes (
 -- Table: Users
 CREATE TABLE Users (
     id int NOT NULL,
-    name varchar(32) NOT NULL,
-    user_type int NOT NULL,
+    display_name varchar(32) NOT NULL,
+    username varchar(32) NOT NULL,
+    password varchar(32) NOT NULL,
     email varchar(64) NULL CHECK ([*@*]),
     phone_number varchar(16) NULL CHECK ([+]?[0-9]{11,16}),
+    user_type int NOT NULL,
     CONSTRAINT Users_pk PRIMARY KEY (id)
 );
 
@@ -57,9 +68,13 @@ ALTER TABLE Devices ADD CONSTRAINT Devices_DeviceType FOREIGN KEY Devices_Device
 ALTER TABLE Loans ADD CONSTRAINT Loans_Devices FOREIGN KEY Loans_Devices (device_id)
     REFERENCES Devices (id);
 
+-- Reference: Loans_Requester (table: Loans)
+ALTER TABLE Loans ADD CONSTRAINT Loans_Requester FOREIGN KEY Loans_Requester (requester_id)
+    REFERENCES Requester (id);
+
 -- Reference: Loans_users (table: Loans)
-ALTER TABLE Loans ADD CONSTRAINT Loans_users FOREIGN KEY Loans_users (user_id,loaned_by,received_by)
-    REFERENCES Users (id,id,id);
+ALTER TABLE Loans ADD CONSTRAINT Loans_users FOREIGN KEY Loans_users (loaned_by,received_by)
+    REFERENCES Users (id,id);
 
 -- Reference: users_user_types (table: Users)
 ALTER TABLE Users ADD CONSTRAINT users_user_types FOREIGN KEY users_user_types (user_type)
