@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-02-24 00:54:19.31
+-- Last modification date: 2018-02-24 01:26:10.687
 
 -- foreign keys
 ALTER TABLE Devices

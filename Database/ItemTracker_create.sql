@@ -1,17 +1,17 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-02-24 00:54:19.31
+-- Last modification date: 2018-02-24 01:26:10.687
 
 -- tables
 -- Table: DeviceTypes
 CREATE TABLE DeviceTypes (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     type varchar(32) NOT NULL,
     CONSTRAINT DeviceTypes_pk PRIMARY KEY (id)
 );
 
 -- Table: Devices
 CREATE TABLE Devices (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     name varchar(32) NOT NULL,
     type int NOT NULL,
     serial_number varchar(120) NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Devices (
 
 -- Table: Loans
 CREATE TABLE Loans (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     requester_id int NOT NULL,
     device_id int NOT NULL,
     collection_date date NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE Loans (
 
 -- Table: Requester
 CREATE TABLE Requester (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     name varchar(32) NOT NULL,
     email varchar(64) NULL CHECK ([*@*]),
     phone_number varchar(16) NULL CHECK ([+]?[0-9]{11,16}),
@@ -42,14 +42,14 @@ CREATE TABLE Requester (
 
 -- Table: UserTypes
 CREATE TABLE UserTypes (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     type varchar(16) NOT NULL,
     CONSTRAINT UserTypes_pk PRIMARY KEY (id)
 );
 
 -- Table: Users
 CREATE TABLE Users (
-    id int NOT NULL,
+    id int NOT NULL AUTO_INCREMENT,
     display_name varchar(32) NOT NULL,
     username varchar(32) NOT NULL,
     password varchar(32) NOT NULL,
@@ -73,8 +73,8 @@ ALTER TABLE Loans ADD CONSTRAINT Loans_Requester FOREIGN KEY Loans_Requester (re
     REFERENCES Requester (id);
 
 -- Reference: Loans_users (table: Loans)
-ALTER TABLE Loans ADD CONSTRAINT Loans_users FOREIGN KEY Loans_users (loaned_by,received_by)
-    REFERENCES Users (id,id);
+ALTER TABLE Loans ADD CONSTRAINT Loans_users FOREIGN KEY Loans_users (loaned_by)
+    REFERENCES Users (id);
 
 -- Reference: users_user_types (table: Users)
 ALTER TABLE Users ADD CONSTRAINT users_user_types FOREIGN KEY users_user_types (user_type)
