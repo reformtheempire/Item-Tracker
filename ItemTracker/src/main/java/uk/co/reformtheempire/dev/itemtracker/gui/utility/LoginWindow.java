@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import uk.co.reformtheempire.dev.itemtracker.database.ConnectionManager;
+
 public class LoginWindow extends JDialog {
 
 	/**
@@ -36,6 +38,9 @@ public class LoginWindow extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		ConnectionManager.loadDBDriver();
+		
 		try {
 			LoginWindow dialog = new LoginWindow();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
