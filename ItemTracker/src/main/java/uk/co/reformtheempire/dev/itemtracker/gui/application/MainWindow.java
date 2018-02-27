@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import uk.co.reformtheempire.dev.itemtracker.database.ConnectionManager;
+
 public class MainWindow {
 
 	private JFrame mainFrame;
@@ -26,6 +28,10 @@ public class MainWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		// initialise the connection manager
+		ConnectionManager.loadDBDriver();
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
