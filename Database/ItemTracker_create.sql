@@ -35,8 +35,8 @@ CREATE TABLE Loans (
 CREATE TABLE Requester (
     id int NOT NULL AUTO_INCREMENT,
     name varchar(32) NOT NULL,
-    email varchar(64) NULL CHECK ([*@*]),
-    phone_number varchar(16) NULL CHECK ([+]?[0-9]{11,16}),
+    email varchar(64) NULL,
+    phone_number varchar(16) NULL,
     CONSTRAINT Requester_pk PRIMARY KEY (id)
 );
 
@@ -53,8 +53,8 @@ CREATE TABLE Users (
     display_name varchar(32) NOT NULL,
     username varchar(32) NOT NULL,
     password varchar(32) NOT NULL,
-    email varchar(64) NULL CHECK ([*@*]),
-    phone_number varchar(16) NULL CHECK ([+]?[0-9]{11,16}),
+    email varchar(64) NULL,
+    phone_number varchar(16) NULL,
     user_type int NOT NULL,
     CONSTRAINT Users_pk PRIMARY KEY (id)
 );
